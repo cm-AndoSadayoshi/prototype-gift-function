@@ -1,9 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import { motion } from "framer-motion";
-import { CheckCircle, Home, Gift } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { CheckCircle, Gift } from "lucide-react";
 
 export default function CompletePage() {
   const now = new Date();
@@ -124,20 +122,6 @@ export default function CompletePage() {
         </motion.div>
       </div>
 
-      {/* ホームボタン */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.2 }}
-        className="p-4 bg-white border-t"
-      >
-        <Link href="/demo/gift-select">
-          <Button size="lg" variant="outline">
-            <Home className="w-5 h-5" />
-            ホームに戻る
-          </Button>
-        </Link>
-      </motion.div>
     </div>
   );
 }

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Gift, Calendar, QrCode, Store } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { QRCodeSVG } from "qrcode.react";
 
 export default function TicketPage() {
   // 有効期限（30日後）
@@ -59,18 +60,13 @@ export default function TicketPage() {
             transition={{ delay: 0.3 }}
             className="p-6 flex flex-col items-center"
           >
-            <div className="w-48 h-48 bg-white border-2 border-gray-100 rounded-2xl flex items-center justify-center mb-4 shadow-inner">
-              {/* モックQRコード */}
-              <div className="w-40 h-40 grid grid-cols-10 gap-0.5">
-                {[...Array(100)].map((_, i) => (
-                  <div
-                    key={i}
-                    className={`aspect-square ${
-                      Math.random() > 0.5 ? "bg-gray-900" : "bg-white"
-                    }`}
-                  />
-                ))}
-              </div>
+            <div className="w-48 h-48 bg-white border-2 border-gray-100 rounded-2xl flex items-center justify-center mb-4 shadow-inner p-3">
+              <QRCodeSVG
+                value="https://classmethod.jp"
+                size={160}
+                level="M"
+                marginSize={0}
+              />
             </div>
             <p className="text-sm text-gray-500 flex items-center gap-1">
               <QrCode className="w-4 h-4" />
