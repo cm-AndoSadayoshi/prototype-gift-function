@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Gift, ChevronRight } from "lucide-react";
+import { ProductImage } from "@/components/ui/product-image";
 
 interface GiftSelectContentProps {
   basePath: "/demo" | "/mini";
@@ -10,7 +11,7 @@ interface GiftSelectContentProps {
 
 const giftProducts = [
   {
-    id: "1",
+    id: "coffee",
     name: "プレミアムコーヒーギフト",
     description: "厳選されたスペシャルティコーヒー",
     price: 2500,
@@ -18,7 +19,7 @@ const giftProducts = [
     category: "ドリンク",
   },
   {
-    id: "2",
+    id: "sweets",
     name: "スイーツアソート",
     description: "人気の焼き菓子詰め合わせ",
     price: 3000,
@@ -26,7 +27,7 @@ const giftProducts = [
     category: "フード",
   },
   {
-    id: "3",
+    id: "aroma",
     name: "リラックスアロマセット",
     description: "癒しのアロマオイル3本セット",
     price: 4500,
@@ -34,7 +35,7 @@ const giftProducts = [
     category: "雑貨",
   },
   {
-    id: "4",
+    id: "tea",
     name: "オーガニック紅茶ギフト",
     description: "有機栽培の高級紅茶セット",
     price: 2800,
@@ -70,10 +71,13 @@ export function GiftSelectContent({ basePath }: GiftSelectContentProps) {
           >
             <Link href={`${basePath}/gift-detail`}>
               <div className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex gap-4 active:scale-[0.98] transition-transform">
-                {/* 商品画像プレースホルダー */}
-                <div className="w-20 h-20 bg-gradient-to-br from-gray-100 to-gray-200 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <Gift className="w-8 h-8 text-gray-400" />
-                </div>
+                {/* 商品画像 */}
+                <ProductImage
+                  productId={product.id}
+                  productName={product.name}
+                  size="md"
+                  className="flex-shrink-0"
+                />
 
                 {/* 商品情報 */}
                 <div className="flex-1 min-w-0">

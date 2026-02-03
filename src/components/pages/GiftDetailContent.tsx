@@ -4,13 +4,14 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ChevronLeft, Gift, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ProductImage } from "@/components/ui/product-image";
 
 interface GiftDetailContentProps {
   basePath: "/demo" | "/mini";
 }
 
 const product = {
-  id: "1",
+  id: "coffee",
   name: "プレミアムコーヒーギフト",
   description:
     "世界各地から厳選されたスペシャルティコーヒー豆を使用した、プレミアムなコーヒーギフトセットです。深い香りと豊かな味わいをお楽しみいただけます。",
@@ -43,11 +44,14 @@ export function GiftDetailContent({ basePath }: GiftDetailContentProps) {
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="w-full aspect-square bg-gradient-to-br from-[#06C755]/20 to-[#00B900]/20 flex items-center justify-center"
+          className="w-full"
         >
-          <div className="w-32 h-32 bg-white rounded-full flex items-center justify-center shadow-lg">
-            <Gift className="w-16 h-16 text-[#06C755]" />
-          </div>
+          <ProductImage
+            productId={product.id}
+            productName={product.name}
+            size="lg"
+            priority={true}
+          />
         </motion.div>
 
         {/* 商品情報 */}

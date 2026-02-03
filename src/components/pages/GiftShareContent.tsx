@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, Gift, Link as LinkIcon, Check, Copy } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ShareTargetPicker } from "@/components/demo/share-target-picker";
+import { ProductImage } from "@/components/ui/product-image";
 
 interface GiftShareContentProps {
   basePath: "/demo" | "/mini";
@@ -136,9 +137,11 @@ export function GiftShareContent({ basePath }: GiftShareContentProps) {
           className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100"
         >
           <div className="flex gap-4">
-            <div className="w-16 h-16 bg-gradient-to-br from-[#06C755]/20 to-[#00B900]/20 rounded-xl flex items-center justify-center">
-              <Gift className="w-8 h-8 text-[#06C755]" />
-            </div>
+            <ProductImage
+              productId="coffee"
+              productName="プレミアムコーヒーギフト"
+              size="card"
+            />
             <div>
               <h3 className="font-bold text-gray-800">
                 プレミアムコーヒーギフト
