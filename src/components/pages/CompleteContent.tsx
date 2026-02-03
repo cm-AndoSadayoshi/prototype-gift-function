@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { CheckCircle, Gift } from "lucide-react";
+import { ProductImage } from "@/components/ui/product-image";
 
 export function CompleteContent() {
   const now = new Date();
@@ -82,9 +83,11 @@ export function CompleteContent() {
           className="w-full mt-8 bg-gray-50 rounded-2xl p-4"
         >
           <div className="flex gap-4 items-center">
-            <div className="w-14 h-14 bg-gradient-to-br from-[#06C755]/20 to-[#00B900]/20 rounded-xl flex items-center justify-center">
-              <Gift className="w-7 h-7 text-[#06C755]" />
-            </div>
+            <ProductImage
+              productId="coffee"
+              productName="プレミアムコーヒーギフト"
+              size="sm"
+            />
             <div className="flex-1">
               <h3 className="font-bold text-gray-800">
                 プレミアムコーヒーギフト
