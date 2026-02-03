@@ -147,7 +147,7 @@ export function TicketContent({ basePath }: TicketContentProps) {
         transition={{ delay: 0.6 }}
         className="p-4 bg-white border-t"
       >
-        <Link href={`${basePath}/complete`}>
+        <Link href={`${basePath}/complete?id=${product.id}`}>
           <Button size="lg">
             <Store className="w-5 h-5" />
             店舗で使う
