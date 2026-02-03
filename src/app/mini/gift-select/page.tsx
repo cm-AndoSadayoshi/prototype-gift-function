@@ -1,5 +1,5 @@
 import { GiftSelectContent } from "@/components/pages/GiftSelectContent";
 
 export default function Page() {
-  return <GiftSelectContent basePath="/demo" />;
+  return <GiftSelectContent basePath="/mini" />;
 }

@@ -1,5 +1,5 @@
 import { GiftShareContent } from "@/components/pages/GiftShareContent";
 
 export default function Page() {
-  return <GiftShareContent basePath="/demo" />;
+  return <GiftShareContent basePath="/mini" />;
 }

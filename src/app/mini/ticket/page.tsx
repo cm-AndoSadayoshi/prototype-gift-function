@@ -1,5 +1,5 @@
 import { TicketContent } from "@/components/pages/TicketContent";
 
 export default function Page() {
-  return <TicketContent basePath="/demo" />;
+  return <TicketContent basePath="/mini" />;
 }
