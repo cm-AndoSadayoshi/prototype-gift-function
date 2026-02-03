@@ -1,5 +1,6 @@
 "use client";
 
+import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Gift, Calendar, QrCode, Store } from "lucide-react";
@@ -10,7 +11,35 @@ interface TicketContentProps {
   basePath: "/demo" | "/mini";
 }
 
+const giftProducts = [
+  {
+    id: "coffee",
+    name: "プレミアムコーヒーギフト",
+    category: "ドリンク",
+  },
+  {
+    id: "sweets",
+    name: "スイーツアソート",
+    category: "フード",
+  },
+  {
+    id: "aroma",
+    name: "リラックスアロマセット",
+    category: "雑貨",
+  },
+  {
+    id: "tea",
+    name: "オーガニック紅茶ギフト",
+    category: "ドリンク",
+  },
+];
+
 export function TicketContent({ basePath }: TicketContentProps) {
+  const searchParams = useSearchParams();
+  const productId = searchParams.get("id") || "coffee";
+  const product =
+    giftProducts.find((p) => p.id === productId) || giftProducts[0];
+
   // 有効期限（30日後）
   const expiryDate = new Date();
   expiryDate.setDate(expiryDate.getDate() + 30);
@@ -44,8 +73,8 @@ export function TicketContent({ basePath }: TicketContentProps) {
                 <Gift className="w-8 h-8" />
               </div>
               <div>
-                <h2 className="text-xl font-bold">プレミアムコーヒーギフト</h2>
-                <p className="text-white/80 text-sm">ドリンク引換券</p>
+                <h2 className="text-xl font-bold">{product.name}</h2>
+                <p className="text-white/80 text-sm">{product.category}引換券</p>
               </div>
             </div>
           </div>
@@ -118,7 +147,7 @@ export function TicketContent({ basePath }: TicketContentProps) {
         transition={{ delay: 0.6 }}
         className="p-4 bg-white border-t"
       >
-        <Link href={`${basePath}/complete`}>
+        <Link href={`${basePath}/complete?id=${product.id}`}>
           <Button size="lg">
             <Store className="w-5 h-5" />
             店舗で使う

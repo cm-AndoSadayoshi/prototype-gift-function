@@ -1,10 +1,35 @@
 "use client";
 
+import { useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import { CheckCircle, Gift } from "lucide-react";
 import { ProductImage } from "@/components/ui/product-image";
 
+const giftProducts = [
+  {
+    id: "coffee",
+    name: "プレミアムコーヒーギフト",
+  },
+  {
+    id: "sweets",
+    name: "スイーツアソート",
+  },
+  {
+    id: "aroma",
+    name: "リラックスアロマセット",
+  },
+  {
+    id: "tea",
+    name: "オーガニック紅茶ギフト",
+  },
+];
+
 export function CompleteContent() {
+  const searchParams = useSearchParams();
+  const productId = searchParams.get("id") || "coffee";
+  const product =
+    giftProducts.find((p) => p.id === productId) || giftProducts[0];
+
   const now = new Date();
   const formattedDate = now.toLocaleDateString("ja-JP", {
     year: "numeric",
@@ -84,14 +109,12 @@ export function CompleteContent() {
         >
           <div className="flex gap-4 items-center">
             <ProductImage
-              productId="coffee"
-              productName="プレミアムコーヒーギフト"
+              productId={product.id}
+              productName={product.name}
               size="sm"
             />
             <div className="flex-1">
-              <h3 className="font-bold text-gray-800">
-                プレミアムコーヒーギフト
-              </h3>
+              <h3 className="font-bold text-gray-800">{product.name}</h3>
               <p className="text-sm text-gray-500">利用済み</p>
             </div>
           </div>

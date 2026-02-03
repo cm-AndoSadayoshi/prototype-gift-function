@@ -1,5 +1,6 @@
 "use client";
 
+import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ChevronLeft, Gift, Check } from "lucide-react";
@@ -10,21 +11,66 @@ interface GiftDetailContentProps {
   basePath: "/demo" | "/mini";
 }
 
-const product = {
-  id: "coffee",
-  name: "プレミアムコーヒーギフト",
-  description:
-    "世界各地から厳選されたスペシャルティコーヒー豆を使用した、プレミアムなコーヒーギフトセットです。深い香りと豊かな味わいをお楽しみいただけます。",
-  price: 2500,
-  category: "ドリンク",
-  features: [
-    "厳選されたスペシャルティコーヒー豆使用",
-    "3種類のブレンドをセット",
-    "有効期限: 発行から30日間",
-  ],
-};
+const giftProducts = [
+  {
+    id: "coffee",
+    name: "プレミアムコーヒーギフト",
+    description:
+      "世界各地から厳選されたスペシャルティコーヒー豆を使用した、プレミアムなコーヒーギフトセットです。深い香りと豊かな味わいをお楽しみいただけます。",
+    price: 2500,
+    category: "ドリンク",
+    features: [
+      "厳選されたスペシャルティコーヒー豆使用",
+      "3種類のブレンドをセット",
+      "有効期限: 発行から30日間",
+    ],
+  },
+  {
+    id: "sweets",
+    name: "スイーツアソート",
+    description:
+      "人気のパティスリーが厳選した焼き菓子の詰め合わせセットです。クッキー、マドレーヌ、フィナンシェなど、様々な味わいをお楽しみいただけます。",
+    price: 3000,
+    category: "フード",
+    features: [
+      "人気の焼き菓子5種類をセット",
+      "個包装で食べやすい",
+      "有効期限: 発行から30日間",
+    ],
+  },
+  {
+    id: "aroma",
+    name: "リラックスアロマセット",
+    description:
+      "天然の植物から抽出した癒しのアロマオイル3本セットです。ラベンダー、ユーカリ、ベルガモットの香りで、リラックスタイムを演出します。",
+    price: 4500,
+    category: "雑貨",
+    features: [
+      "天然植物由来の高品質オイル",
+      "3種類の香りをセット",
+      "有効期限: 発行から60日間",
+    ],
+  },
+  {
+    id: "tea",
+    name: "オーガニック紅茶ギフト",
+    description:
+      "有機栽培で育てられた高級紅茶のギフトセットです。ダージリン、アールグレイ、ローズヒップなど、豊かな香りと深い味わいをお楽しみいただけます。",
+    price: 2800,
+    category: "ドリンク",
+    features: [
+      "有機栽培の茶葉使用",
+      "4種類のフレーバーをセット",
+      "有効期限: 発行から30日間",
+    ],
+  },
+];
 
 export function GiftDetailContent({ basePath }: GiftDetailContentProps) {
+  const searchParams = useSearchParams();
+  const productId = searchParams.get("id") || "coffee";
+  const product =
+    giftProducts.find((p) => p.id === productId) || giftProducts[0];
   return (
     <div className="min-h-full bg-gray-50 flex flex-col">
       {/* ヘッダー */}
@@ -110,7 +156,7 @@ export function GiftDetailContent({ basePath }: GiftDetailContentProps) {
         transition={{ delay: 0.4 }}
         className="p-4 bg-white border-t"
       >
-        <Link href={`${basePath}/gift-share`}>
+        <Link href={`${basePath}/gift-share?id=${product.id}`}>
           <Button size="lg">
             <Gift className="w-5 h-5" />
             ギフトを購入する

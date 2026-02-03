@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
@@ -13,8 +14,40 @@ interface GiftShareContentProps {
   basePath: "/demo" | "/mini";
 }
 
+const giftProducts = [
+  {
+    id: "coffee",
+    name: "プレミアムコーヒーギフト",
+    price: 2500,
+    category: "ドリンク",
+  },
+  {
+    id: "sweets",
+    name: "スイーツアソート",
+    price: 3000,
+    category: "フード",
+  },
+  {
+    id: "aroma",
+    name: "リラックスアロマセット",
+    price: 4500,
+    category: "雑貨",
+  },
+  {
+    id: "tea",
+    name: "オーガニック紅茶ギフト",
+    price: 2800,
+    category: "ドリンク",
+  },
+];
+
 export function GiftShareContent({ basePath }: GiftShareContentProps) {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const productId = searchParams.get("id") || "coffee";
+  const product =
+    giftProducts.find((p) => p.id === productId) || giftProducts[0];
+
   const [giftUrl, setGiftUrl] = useState("");
   const [isGenerating, setIsGenerating] = useState(true);
   const [isPickerOpen, setIsPickerOpen] = useState(false);
@@ -40,7 +73,7 @@ export function GiftShareContent({ basePath }: GiftShareContentProps) {
     setIsPickerOpen(false);
     setIsSent(true);
     setTimeout(() => {
-      router.push(`${basePath}/gift-receive`);
+      router.push(`${basePath}/gift-receive?id=${product.id}`);
     }, 2000);
   };
 
@@ -49,7 +82,7 @@ export function GiftShareContent({ basePath }: GiftShareContentProps) {
       {/* ヘッダー */}
       <div className="bg-white px-4 py-3 border-b flex items-center gap-3">
         <Link
-          href={`${basePath}/gift-detail`}
+          href={`${basePath}/gift-detail?id=${product.id}`}
           className="p-1 hover:bg-gray-100 rounded-full"
         >
           <ChevronLeft className="w-6 h-6 text-gray-600" />
@@ -138,16 +171,16 @@ export function GiftShareContent({ basePath }: GiftShareContentProps) {
         >
           <div className="flex gap-4">
             <ProductImage
-              productId="coffee"
-              productName="プレミアムコーヒーギフト"
+              productId={product.id}
+              productName={product.name}
               size="card"
             />
             <div>
-              <h3 className="font-bold text-gray-800">
-                プレミアムコーヒーギフト
-              </h3>
-              <p className="text-sm text-gray-500">ドリンク</p>
-              <p className="text-[#06C755] font-bold mt-1">¥2,500</p>
+              <h3 className="font-bold text-gray-800">{product.name}</h3>
+              <p className="text-sm text-gray-500">{product.category}</p>
+              <p className="text-[#06C755] font-bold mt-1">
+                ¥{product.price.toLocaleString()}
+              </p>
             </div>
           </div>
         </motion.div>

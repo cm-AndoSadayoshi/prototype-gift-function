@@ -69,7 +69,7 @@ export function GiftSelectContent({ basePath }: GiftSelectContentProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.1 }}
           >
-            <Link href={`${basePath}/gift-detail`}>
+            <Link href={`${basePath}/gift-detail?id=${product.id}`}>
               <div className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex gap-4 active:scale-[0.98] transition-transform">
                 {/* 商品画像 */}
                 <ProductImage
