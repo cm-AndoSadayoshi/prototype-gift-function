@@ -1,0 +1,16 @@
+{
+  "/_not-found/page": "app/_not-found/page.js",
+  "/page": "app/page.js",
+  "/demo/gift-select/page": "app/demo/gift-select/page.js",
+  "/demo/ticket/page": "app/demo/ticket/page.js",
+  "/demo/complete/page": "app/demo/complete/page.js",
+  "/demo/gift-receive/page": "app/demo/gift-receive/page.js",
+  "/demo/gift-share/page": "app/demo/gift-share/page.js",
+  "/mini/gift-share/page": "app/mini/gift-share/page.js",
+  "/mini/ticket/page": "app/mini/ticket/page.js",
+  "/mini/gift-receive/page": "app/mini/gift-receive/page.js",
+  "/demo/gift-detail/page": "app/demo/gift-detail/page.js",
+  "/mini/gift-select/page": "app/mini/gift-select/page.js",
+  "/mini/gift-detail/page": "app/mini/gift-detail/page.js",
+  "/mini/complete/page": "app/mini/complete/page.js"
+}

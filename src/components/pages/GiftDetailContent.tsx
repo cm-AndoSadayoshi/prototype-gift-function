@@ -156,7 +156,7 @@ export function GiftDetailContent({ basePath }: GiftDetailContentProps) {
         transition={{ delay: 0.4 }}
         className="p-4 bg-white border-t"
       >
-        <Link href={`${basePath}/gift-share`}>
+        <Link href={`${basePath}/gift-share?id=${product.id}`}>
           <Button size="lg">
             <Gift className="w-5 h-5" />
             ギフトを購入する

@@ -1,5 +1,6 @@
 "use client";
 
+import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Gift, Heart, Sparkles } from "lucide-react";
@@ -10,7 +11,38 @@ interface GiftReceiveContentProps {
   basePath: "/demo" | "/mini";
 }
 
+const giftProducts = [
+  {
+    id: "coffee",
+    name: "プレミアムコーヒーギフト",
+    description: "厳選されたスペシャルティコーヒー",
+    price: 2500,
+  },
+  {
+    id: "sweets",
+    name: "スイーツアソート",
+    description: "人気の焼き菓子詰め合わせ",
+    price: 3000,
+  },
+  {
+    id: "aroma",
+    name: "リラックスアロマセット",
+    description: "癒しのアロマオイル3本セット",
+    price: 4500,
+  },
+  {
+    id: "tea",
+    name: "オーガニック紅茶ギフト",
+    description: "有機栽培の高級紅茶セット",
+    price: 2800,
+  },
+];
+
 export function GiftReceiveContent({ basePath }: GiftReceiveContentProps) {
+  const searchParams = useSearchParams();
+  const productId = searchParams.get("id") || "coffee";
+  const product =
+    giftProducts.find((p) => p.id === productId) || giftProducts[0];
   return (
     <div className="min-h-full bg-gradient-to-b from-[#06C755]/10 to-white flex flex-col">
       {/* ヘッダー */}
@@ -73,7 +105,7 @@ export function GiftReceiveContent({ basePath }: GiftReceiveContentProps) {
         >
           <p className="text-gray-500 text-sm mb-2">田中 太郎さんから</p>
           <h2 className="text-2xl font-bold text-gray-800 mb-4">
-            プレミアムコーヒーギフト
+            {product.name}
           </h2>
           <div className="inline-flex items-center gap-1 px-4 py-2 bg-pink-50 rounded-full">
             <Heart className="w-4 h-4 text-pink-500" />
@@ -92,18 +124,16 @@ export function GiftReceiveContent({ basePath }: GiftReceiveContentProps) {
         >
           <div className="flex gap-4">
             <ProductImage
-              productId="coffee"
-              productName="プレミアムコーヒーギフト"
+              productId={product.id}
+              productName={product.name}
               size="card"
             />
             <div className="flex-1">
-              <h3 className="font-bold text-gray-800">
-                プレミアムコーヒーギフト
-              </h3>
-              <p className="text-sm text-gray-500">
-                厳選されたスペシャルティコーヒー
+              <h3 className="font-bold text-gray-800">{product.name}</h3>
+              <p className="text-sm text-gray-500">{product.description}</p>
+              <p className="text-[#06C755] font-bold mt-1">
+                ¥{product.price.toLocaleString()}相当
               </p>
-              <p className="text-[#06C755] font-bold mt-1">¥2,500相当</p>
             </div>
           </div>
         </motion.div>
@@ -116,7 +146,7 @@ export function GiftReceiveContent({ basePath }: GiftReceiveContentProps) {
         transition={{ delay: 0.7 }}
         className="p-4 bg-white border-t"
       >
-        <Link href={`${basePath}/ticket`}>
+        <Link href={`${basePath}/ticket?id=${product.id}`}>
           <Button size="lg">
             <Gift className="w-5 h-5" />
             ギフトを受け取る
